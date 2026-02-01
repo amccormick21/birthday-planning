@@ -32,7 +32,7 @@ function Accommodation() {
   const [selectedImage, setSelectedImage] = useState(0)
   
   // Default coordinates (London - replace with actual location)
-  const position = [51.505, -0.09]
+  const position = [51.27368, -2.59226]
 
   const accommodationDetails = {
     name: 'Accommodation Name',
@@ -131,6 +131,8 @@ function Accommodation() {
           <div className="map-container">
             <MapContainer center={position} zoom={13} style={{ height: '400px', width: '100%' }}>
               <TileLayer
+                zoom={13}
+                center={position}
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
