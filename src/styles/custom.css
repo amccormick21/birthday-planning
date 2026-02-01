@@ -1,0 +1,35 @@
+/**
+ * Custom Styles - Add your own custom CSS here
+ * 
+ * This file is loaded after all other styles, so you can override
+ * any default styling by adding your custom CSS rules below.
+ * 
+ * Examples:
+ * 
+ * Change button colors:
+ * .explore-button {
+ *   background: linear-gradient(135deg, #667eea, #764ba2);
+ * }
+ * 
+ * Modify card styling:
+ * .gallery-card {
+ *   border: 2px solid #667eea;
+ * }
+ * 
+ * Change fonts:
+ * body {
+ *   font-family: 'Arial', sans-serif;
+ * }
+ * 
+ * Add animations:
+ * .walk-tab:hover {
+ *   animation: pulse 0.5s ease-in-out;
+ * }
+ * 
+ * @keyframes pulse {
+ *   0%, 100% { transform: scale(1); }
+ *   50% { transform: scale(1.05); }
+ * }
+ */
+
+/* Add your custom styles below this line */

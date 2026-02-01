@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="#4a90e2"/>
+  <circle cx="256" cy="256" r="220" fill="#667eea"/>
+  
+  <!-- Balloon -->
+  <ellipse cx="256" cy="200" rx="80" ry="100" fill="#50c878"/>
+  <ellipse cx="256" cy="200" rx="60" ry="80" fill="#5ae48a" opacity="0.5"/>
+  
+  <!-- Balloon String -->
+  <path d="M 256 300 Q 240 350, 256 400" stroke="#ffffff" stroke-width="3" fill="none"/>
+  
+  <!-- Party Hat -->
+  <polygon points="350,280 380,350 320,350" fill="#f39c12"/>
+  <polygon points="350,280 380,350 320,350" fill="#ffd93d" opacity="0.5"/>
+  <circle cx="350" cy="275" r="12" fill="#ff6b6b"/>
+  
+  <!-- Map Pin -->
+  <path d="M 160 320 C 160 320, 160 290, 160 270 C 160 250, 175 235, 160 235 C 145 235, 160 250, 160 270 C 160 290, 160 320, 160 320" 
+        fill="#ff6b6b" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="160" cy="255" r="8" fill="#ffffff"/>
+  
+  <!-- Birthday Cake -->
+  <rect x="210" y="360" width="80" height="50" rx="5" fill="#feca57"/>
+  <rect x="210" y="360" width="80" height="15" rx="5" fill="#ff6b6b"/>
+  
+  <!-- Candles -->
+  <rect x="230" y="345" width="6" height="18" fill="#ffffff"/>
+  <rect x="252" y="340" width="6" height="23" fill="#ffffff"/>
+  <rect x="274" y="345" width="6" height="18" fill="#ffffff"/>
+  
+  <!-- Flames -->
+  <ellipse cx="233" cy="342" rx="4" ry="6" fill="#ff6b6b"/>
+  <ellipse cx="255" cy="337" rx="4" ry="6" fill="#ff6b6b"/>
+  <ellipse cx="277" cy="342" rx="4" ry="6" fill="#ff6b6b"/>
+  
+  <!-- Stars/Sparkles -->
+  <circle cx="400" cy="150" r="3" fill="#ffffff"/>
+  <circle cx="420" cy="200" r="2" fill="#ffffff"/>
+  <circle cx="100" cy="180" r="3" fill="#ffffff"/>
+  <circle cx="90" cy="240" r="2" fill="#ffffff"/>
+  <circle cx="380" cy="380" r="2" fill="#ffffff"/>
+  <circle cx="120" cy="120" r="3" fill="#ffffff"/>
+</svg>
