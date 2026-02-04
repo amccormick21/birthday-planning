@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { MapContainer, TileLayer, Polyline, Marker, Popup } from 'react-leaflet'
+import { collection, getDocs, orderBy, query } from 'firebase/firestore'
+import { useAuth } from '../firebase/AuthContext'
+import { db } from '../firebase/config'
 import gpxParser from 'gpxparser'
 import 'leaflet/dist/leaflet.css'
 import '../styles/Walks.css'
@@ -18,60 +21,41 @@ let DefaultIcon = L.icon({
 })
 L.Marker.prototype.options.icon = DefaultIcon
 
-// Sample walks data
-const walksData = [
-  {
-    id: 1,
-    title: 'Coastal Path Walk',
-    distance: '5.2 km',
-    duration: '1.5 hours',
-    startLocation: 'Main Beach Car Park',
-    difficulty: 'Easy',
-    description: 'A beautiful coastal walk with stunning sea views.',
-    photos: ['🌊', '🏖️', '⛰️'],
-    defaultRoute: [
-      [51.505, -0.09],
-      [51.51, -0.1],
-      [51.515, -0.095]
-    ]
-  },
-  {
-    id: 2,
-    title: 'Forest Trail',
-    distance: '8.5 km',
-    duration: '2.5 hours',
-    startLocation: 'Forest Visitor Centre',
-    difficulty: 'Moderate',
-    description: 'Explore ancient woodland and wildlife habitats.',
-    photos: ['🌲', '🦊', '🍄'],
-    defaultRoute: [
-      [51.52, -0.12],
-      [51.525, -0.115],
-      [51.53, -0.125]
-    ]
-  },
-  {
-    id: 3,
-    title: 'Mountain Summit',
-    distance: '12.3 km',
-    duration: '4 hours',
-    startLocation: 'Mountain Base Station',
-    difficulty: 'Challenging',
-    description: 'Challenging climb with panoramic views from the summit.',
-    photos: ['⛰️', '🥾', '☁️'],
-    defaultRoute: [
-      [51.54, -0.14],
-      [51.545, -0.135],
-      [51.55, -0.145]
-    ]
-  }
-]
-
 function Walks() {
   const navigate = useNavigate()
-  const [selectedWalk, setSelectedWalk] = useState(walksData[0])
+  const { currentUser, signOut } = useAuth()
+  const [walksData, setWalksData] = useState([])
+  const [selectedWalk, setSelectedWalk] = useState(null)
   const [gpxRoute, setGpxRoute] = useState(null)
   const [uploadError, setUploadError] = useState('')
+  const [loading, setLoading] = useState(true)
+
+  // Fetch walks from Firestore
+  useEffect(() => {
+    const fetchWalks = async () => {
+      try {
+        const walksQuery = query(
+          collection(db, 'walks'),
+          orderBy('createdAt', 'desc')
+        )
+        const querySnapshot = await getDocs(walksQuery)
+        const walks = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        setWalksData(walks)
+        if (walks.length > 0) {
+          setSelectedWalk(walks[0])
+        }
+      } catch (error) {
+        console.error('Error fetching walks:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchWalks()
+  }, [])
 
   const handleGpxUpload = (event) => {
     const file = event.target.files[0]
@@ -107,14 +91,90 @@ function Walks() {
     setUploadError('')
   }
 
-  const routeToDisplay = gpxRoute || selectedWalk.defaultRoute
-  const mapCenter = routeToDisplay[0]
+  const handleSignOut = async () => {
+    try {
+      await signOut()
+      navigate('/')
+    } catch (error) {
+      console.error('Error signing out:', error)
+    }
+  }
+
+  // Convert route to array format for Leaflet (handles both object and array formats)
+  const convertRouteForLeaflet = (route) => {
+    if (!route || route.length === 0) return null
+    
+    // Check if route is in object format {lat, lng} or array format [lat, lng]
+    if (route[0].lat !== undefined && route[0].lng !== undefined) {
+      // Convert objects to arrays for Leaflet
+      return route.map(point => [point.lat, point.lng])
+    }
+    
+    // Already in array format
+    return route
+  }
+
+  const rawRoute = gpxRoute || (selectedWalk?.route || selectedWalk?.defaultRoute)
+  const routeToDisplay = convertRouteForLeaflet(rawRoute)
+  const mapCenter = routeToDisplay?.[0] || [51.505, -0.09]
+
+  if (loading) {
+    return (
+      <div className="walks-container">
+        <div className="loading-message">Loading walks...</div>
+      </div>
+    )
+  }
+
+  if (walksData.length === 0) {
+    return (
+      <div className="walks-container">
+        <div className="walks-header-bar">
+          <button className="back-button" onClick={() => navigate('/')}>
+            ← Back to Home
+          </button>
+          <button className="sign-out-button" onClick={handleSignOut}>
+            Sign Out
+          </button>
+        </div>
+
+        <header className="walks-header">
+          <h1>🥾 Walks & Trails</h1>
+          <p>Discover beautiful walking routes</p>
+        </header>
+
+        <div className="empty-state">
+          <h2>No walks yet</h2>
+          <p>Be the first to upload a walking route!</p>
+          <button 
+            className="upload-walk-button"
+            onClick={() => navigate('/upload-walk')}
+          >
+            📤 Upload Your First Walk
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="walks-container">
-      <button className="back-button" onClick={() => navigate('/')}>
-        ← Back to Home
-      </button>
+      <div className="walks-header-bar">
+        <button className="back-button" onClick={() => navigate('/')}>
+          ← Back to Home
+        </button>
+        <div className="header-buttons">
+          <button 
+            className="upload-walk-button"
+            onClick={() => navigate('/upload-walk')}
+          >
+            📤 Upload Walk
+          </button>
+          <button className="sign-out-button" onClick={handleSignOut}>
+            Sign Out
+          </button>
+        </div>
+      </div>
 
       <header className="walks-header">
         <h1>🥾 Walks & Trails</h1>
@@ -128,7 +188,7 @@ function Walks() {
           {walksData.map((walk) => (
             <button
               key={walk.id}
-              className={`walk-tab ${selectedWalk.id === walk.id ? 'active' : ''}`}
+              className={`walk-tab ${selectedWalk?.id === walk.id ? 'active' : ''}`}
               onClick={() => {
                 setSelectedWalk(walk)
                 setGpxRoute(null)
@@ -143,21 +203,27 @@ function Walks() {
 
         {/* Main content */}
         <main className="walks-main">
+          {selectedWalk && (
           <div className="walk-details">
             <h2>{selectedWalk.title}</h2>
             <p className="walk-description">{selectedWalk.description}</p>
 
             {/* Photos */}
             <div className="walk-photos">
-              {selectedWalk.photos.map((photo, index) => (
-                <div key={index} className="photo-placeholder">
-                  <span className="emoji-photo">{photo}</span>
-                </div>
-              ))}
+              {selectedWalk.photos && selectedWalk.photos.length > 0 ? (
+                selectedWalk.photos.map((photo, index) => (
+                  <div key={index} className="photo-container">
+                    <img 
+                      src={photo} 
+                      alt={`${selectedWalk.title} - Photo ${index + 1}`}
+                      className="walk-photo"
+                    />
+                  </div>
+                ))
+              ) : (
+                <p className="no-photos">No photos available</p>
+              )}
             </div>
-            <p className="edit-note">
-              💡 Replace emoji placeholders with actual photos
-            </p>
 
             {/* Walk Info Table */}
             <table className="walk-info-table">
@@ -242,6 +308,7 @@ function Walks() {
               </ul>
             </div>
           </div>
+          )}
         </main>
       </div>
     </div>

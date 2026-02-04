@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "orta.vscode-jest",
+    "firsttris.vscode-jest-runner",
+    "ms-vscode.test-adapter-converter",
+    "hbenl.vscode-test-explorer"
+  ]
+}

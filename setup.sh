@@ -41,6 +41,45 @@ fi
 
 echo ""
 echo "========================================"
+echo "Firebase Configuration"
+echo "========================================"
+echo ""
+
+# Check if .env.local exists
+if [ ! -f ".env.local" ]; then
+    echo "[INFO] Creating .env.local from template..."
+    cp .env.example .env.local
+    echo "[OK] .env.local created"
+    echo ""
+    echo "[ACTION REQUIRED] You need to configure Firebase:"
+    echo ""
+    echo "1. Get your Firebase configuration from:"
+    echo "   https://console.firebase.google.com/"
+    echo ""
+    echo "2. Edit .env.local and replace placeholder values with your Firebase config"
+    echo ""
+    echo "3. Follow the complete setup guide in FIREBASE_SETUP.md"
+    echo ""
+    read -p "Press Enter to open .env.local in your default editor..."
+    
+    # Try to open in common editors
+    if command -v code &> /dev/null; then
+        code .env.local
+    elif command -v nano &> /dev/null; then
+        nano .env.local
+    elif command -v vim &> /dev/null; then
+        vim .env.local
+    else
+        echo "[INFO] Please manually edit .env.local with your Firebase configuration"
+    fi
+else
+    echo "[OK] .env.local already exists"
+    echo ""
+    echo "If you need to update Firebase configuration, edit .env.local"
+fi
+
+echo ""
+echo "========================================"
 echo "Setup Complete!"
 echo "========================================"
 echo ""
@@ -49,4 +88,6 @@ echo "  npm run dev"
 echo ""
 echo "To build for production, run:"
 echo "  npm run build"
+echo ""
+echo "For Firebase setup help, see FIREBASE_SETUP.md"
 echo ""

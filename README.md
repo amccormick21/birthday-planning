@@ -4,6 +4,8 @@ A beautiful, interactive React web application for planning birthday celebration
 
 ## 📚 Documentation
 
+- **[FIREBASE_SETUP.md](FIREBASE_SETUP.md)** - 🔥 Complete Firebase authentication & database setup (no Storage required!)
+- **[STORAGE_ALTERNATIVE.md](STORAGE_ALTERNATIVE.md)** - 🗄️ How we store images in Firestore (no Storage needed)
 - **[USAGE_GUIDE.md](USAGE_GUIDE.md)** - Complete setup and usage guide
 - **[QUICK_START.md](QUICK_START.md)** - Get started in 3 easy steps
 - **[DEVELOPMENT.md](DEVELOPMENT.md)** - Complete developer guide with code examples
@@ -17,11 +19,17 @@ A beautiful, interactive React web application for planning birthday celebration
 - **Location Guide**: Blog-style page with destination information
 - **Accommodation Details**: Image gallery, interactive map, and comprehensive accommodation information
 - **Walks & Trails**: Advanced route planner with:
+  - User authentication (Firebase)
+  - Walk upload with photos and GPX files
   - Multiple walk profiles
   - GPX file upload and visualization
   - Interactive maps using Leaflet
   - Distance, duration, and difficulty information
   - Photo galleries for each walk
+- **Firestore-Only Storage**: Images and GPX data stored directly in database (no Storage service needed!)
+  - Works with free Firebase tier
+  - Automatic image compression
+  - Perfect for personal projects
 
 ## 🚀 Quick Start
 
@@ -44,12 +52,27 @@ A beautiful, interactive React web application for planning birthday celebration
    npm install
    ```
 
-3. **Start the development server**
+3. **Configure Firebase** 🔥
+   
+   For authentication and user uploads, set up Firebase:
+   
+   a. **Create `.env.local` file**:
+   ```bash
+   cp .env.example .env.local
+   ```
+   
+   b. **Add your Firebase configuration** to `.env.local` (see [FIREBASE_SETUP.md](FIREBASE_SETUP.md) for details)
+   
+   c. **For production**: Add Firebase config to [GitHub Secrets](https://github.com/amccormick21/birthday-planning/settings/secrets/actions)
+   
+   See complete Firebase setup guide: **[FIREBASE_SETUP.md](FIREBASE_SETUP.md)**
+
+4. **Start the development server**
    ```bash
    npm run dev
    ```
 
-4. **Open your browser**
+5. **Open your browser**
    
    Navigate to `http://localhost:5173` to view the app.
 
