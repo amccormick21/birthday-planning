@@ -47,20 +47,12 @@ export function AuthProvider({ children }) {
   }, [])
 
   const signIn = async (email, password) => {
-    try {
-      await signInWithEmailAndPassword(auth, email, password)
-    } catch (error) {
-      throw error
-    }
+    await signInWithEmailAndPassword(auth, email, password)
   }
 
   const signOut = async () => {
-    try {
-      await firebaseSignOut(auth)
-      setUserProfile(null)
-    } catch (error) {
-      throw error
-    }
+    await firebaseSignOut(auth)
+    setUserProfile(null)
   }
 
   const isAdmin = () => {

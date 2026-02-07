@@ -23,7 +23,7 @@ L.Marker.prototype.options.icon = DefaultIcon
 
 function Walks() {
   const navigate = useNavigate()
-  const { currentUser, signOut } = useAuth()
+  const { signOut } = useAuth()
   const [walksData, setWalksData] = useState([])
   const [selectedWalk, setSelectedWalk] = useState(null)
   const [gpxRoute, setGpxRoute] = useState(null)

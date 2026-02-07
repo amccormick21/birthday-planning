@@ -125,7 +125,7 @@ global.FileReader = class {
     })
   }
   
-  readAsDataURL(blob) {
+  readAsDataURL() {
     // Call onload asynchronously but immediately
     setImmediate(() => {
       if (this._onload) {
