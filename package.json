@@ -21,8 +21,9 @@
   },
   "homepage": "https://amccormick21.github.io/birthday-planning/",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "npm run build:content && vite",
+    "build": "npm run build:content && vite build",
+    "build:content": "node scripts/build-content.js",
     "preview": "vite preview",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "test": "jest",

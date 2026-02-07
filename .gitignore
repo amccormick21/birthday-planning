@@ -16,6 +16,9 @@ dist-ssr
 .env
 coverage
 
+# Generated content (rebuild with npm run build:content)
+src/data/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
