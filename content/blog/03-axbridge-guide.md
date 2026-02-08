@@ -1,0 +1,15 @@
+---
+id: 3
+title: Axbridge - A Pocket-Sized Medieval Marvel
+date: February 2026
+icon: 🏘️
+order: 3
+---
+
+Arriving in Axbridge feels rather like stepping through a portal into Tudor England, albeit one with considerably better coffee options. This compact market town of approximately 2,200 souls sits at the western foot of the Mendip Hills, guarding the ancient route between the Somerset Levels and the Bristol Channel. The settlement received its royal charter in 1202, making it one of England's oldest boroughs, though evidence suggests people have gathered here since Saxon times. What strikes the visitor immediately is the remarkable preservation of its medieval street plan — a tight grid of lanes converging on a market square that has witnessed over eight centuries of commerce, celebration, and occasional civic disagreement.
+
+The architectural centrepiece of Axbridge is undoubtedly King John's Hunting Lodge, despite the fact that King John almost certainly never hunted from it. This magnificent timber-framed building, dating from around 1500, leans at angles that would alarm a structural engineer but somehow remains standing through a combination of medieval craftsmanship and English stubbornness. Now operated as a local history museum by the National Trust, it offers a fascinating glimpse into the domestic life of a prosperous Tudor merchant. The square it overlooks hosts a weekly market on Saturdays, continuing a tradition that predates the building itself, where local producers sell everything from organic vegetables to artisan breads.
+
+For such a small town, Axbridge punches considerably above its weight in amenities. The High Street accommodates an impressive array of independent shops, pubs, and eateries squeezed into buildings that were never designed for commercial use but have adapted gamely over the centuries. The Lamb Inn claims origins in the 15th century and serves as the unofficial community hub, while the Oak House provides locally-sourced dining in a setting of exposed beams and inglenook fireplaces. The Church of St John the Baptist, with its notable 17th-century plaster ceiling depicting biblical scenes, rewards the visitor who takes time to explore beyond the main square.
+
+Practical considerations for the traveller: Axbridge lies approximately 20 minutes by car from both Bristol and Wells, with irregular bus services connecting to larger towns. Parking can prove challenging on market days — the medieval planners, inconsiderately, failed to anticipate the motor car. The town makes an excellent base for exploring the western Mendips, with the Strawberry Line cycle path passing nearby and numerous footpaths climbing into the hills. Accommodation options range from characterful bed-and-breakfasts in historic buildings to more modern establishments on the town's fringes. Come with comfortable walking shoes, an appreciation for wonky architecture, and sufficient appetite to sample the local hospitality — Axbridge may be small, but it delivers an authentically English experience that larger destinations often struggle to match.
