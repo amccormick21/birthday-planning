@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Location from './pages/Location'
 import Accommodation from './pages/Accommodation'
 import Walks from './pages/Walks'
+import Gallery from './pages/Gallery'
 import Login from './pages/Login'
 import UploadWalk from './pages/UploadWalk'
 import './styles/App.css'
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/location" element={<Location />} />
           <Route path="/accommodation" element={<Accommodation />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/login" element={<Login />} />
           <Route 
             path="/walks" 

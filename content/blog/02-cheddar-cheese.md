@@ -1,0 +1,15 @@
+---
+id: 2
+title: Cheddar - Where Cheese Became Legend
+date: February 2026
+icon: 🧀
+order: 2
+---
+
+There is a certain irony in the fact that the world's most imitated cheese takes its name from a small Somerset village that most cheese-eaters couldn't locate on a map. Yet here in Cheddar, nestled at the foot of Britain's largest gorge, the art of cheesemaking has been practised for nearly a thousand years, transforming this unassuming settlement into an unlikely culinary landmark. The caves that honeycomb the limestone cliffs provided the original maturation chambers — natural refrigerators maintaining a constant temperature of around 7°C and humidity of 98%, conditions that proved ideal for developing the sharp, complex flavours that would eventually conquer dinner tables across the globe.
+
+The history of Cheddar cheese is inextricably linked to the peculiar geography of this place. Local legend holds that a milkmaid accidentally left a pail of milk in the Gough's Cave system, returning months later to discover it had transformed into something rather more interesting than spoiled dairy. Whether apocryphal or not, records confirm that cheese from Cheddar was being supplied to the Royal Court by the 12th century, with King Henry II declaring it the finest in Britain and purchasing over 10,000 pounds of it in 1170. The unique process of "cheddaring" — repeatedly cutting and stacking the curds to expel moisture — was perfected here, creating a cheese that could survive long journeys without spoiling, a crucial advantage in an age before refrigeration.
+
+The gorge itself deserves equal billing in Cheddar's claim to fame. Carved by meltwater floods at the end of the last Ice Age, this three-mile ravine plunges nearly 140 metres through the Mendip limestone, its sheer cliffs now home to peregrine falcons and rare Cheddar Pink flowers found nowhere else on Earth. Victorian tourists arrived by the trainload to marvel at its dramatic scenery, and the village transformed accordingly, sprouting tea rooms, curiosity shops, and guided cave tours that continue to this day. The combination of natural spectacle and gastronomic heritage proved irresistible, cementing Cheddar's place on the tourist trail.
+
+Today, authentic Cheddar cheese — the genuine article made in this village using traditional methods — represents a tiny fraction of the global "cheddar" market, much of which bears little resemblance to its namesake. Only a handful of producers maintain the old ways, ageing their wheels in the original caves where that apocryphal milkmaid made her happy accident. Visiting one of these operations, watching the cheesemakers work the curds by hand as their predecessors did centuries ago, one gains appreciation for what has been lost in the industrialisation of food production. The cheese you'll taste here — tangy, crumbly, with a depth of flavour that supermarket blocks cannot approach — serves as delicious proof that some traditions are worth preserving.
