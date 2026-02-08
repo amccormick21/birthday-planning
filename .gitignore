@@ -18,6 +18,7 @@ coverage
 
 # Generated content (rebuild with npm run build:content)
 src/data/
+public/images/gallery/
 
 # Editor directories and files
 .vscode/*
