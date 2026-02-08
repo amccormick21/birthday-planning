@@ -19,7 +19,11 @@ export const parseGpxRoute = async (file) => {
             lat: point.lat,
             lng: point.lon
           }))
-          resolve(points)
+
+          // Take only every tenth point out of potentially thousands to reduce Firestore storage and improve performance
+          const sampledPoints = points.filter((_, index) => index % 10 === 0)
+
+          resolve(sampledPoints)
         } else {
           reject(new Error('No track data found in GPX file'))
         }

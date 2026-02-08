@@ -91,7 +91,6 @@ export default function UploadWalk() {
       await addDoc(collection(db, 'walks'), {
         ...formData,
         route,
-        gpxData: gpxText,
         photos: photoBase64Array,
         createdBy: currentUser.uid,
         createdAt: serverTimestamp(),
