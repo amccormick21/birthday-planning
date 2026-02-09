@@ -4,7 +4,6 @@ import {
   compressImage,
   validatePhotos,
   calculateCompressedDimensions,
-  readFileAsText
 } from '../fileUtils'
 import { readFileSync } from 'fs'
 import { join } from 'path'
@@ -57,16 +56,6 @@ describe('GPX Parser Utils', () => {
 
     test('should throw error for empty string', () => {
       expect(() => parseGpxText('')).toThrow()
-    })
-  })
-
-  describe('readFileAsText', () => {
-    test('should read file content as text', async () => {
-      const mockFile = new Blob([validGpxData], { type: 'text/xml' })
-      mockFile.text = () => Promise.resolve(validGpxData)
-      
-      const result = await readFileAsText(mockFile)
-      expect(result).toBe(validGpxData)
     })
   })
 

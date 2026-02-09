@@ -19,7 +19,11 @@ export const parseGpxRoute = async (file) => {
             lat: point.lat,
             lng: point.lon
           }))
-          resolve(points)
+
+          // Take only every tenth point out of potentially thousands to reduce Firestore storage and improve performance
+          const sampledPoints = points.filter((_, index) => index % 10 === 0)
+
+          resolve(sampledPoints)
         } else {
           reject(new Error('No track data found in GPX file'))
         }
@@ -128,20 +132,6 @@ export const compressImage = (file, maxWidth = 800, maxHeight = 600, quality = 0
     
     reader.onerror = () => reject(new Error('Failed to read image file'))
     reader.readAsDataURL(file)
-  })
-}
-
-/**
- * Read a text file and return its content
- * @param {File} file - File to read
- * @returns {Promise<string>} File content as text
- */
-export const readFileAsText = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = (e) => resolve(e.target.result)
-    reader.onerror = () => reject(new Error('Failed to read file'))
-    reader.readAsText(file)
   })
 }
 

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { useAuth } from '../firebase/AuthContext'
 import { db } from '../firebase/config'
-import { parseGpxRoute, compressImage, readFileAsText, validatePhotos } from '../utils/fileUtils'
+import { parseGpxRoute, compressImage, validatePhotos } from '../utils/fileUtils'
 import '../styles/UploadWalk.css'
 
 export default function UploadWalk() {
@@ -77,9 +77,6 @@ export default function UploadWalk() {
       // Parse GPX route and get raw GPX data
       const route = await parseGpxRoute(gpxFile)
       
-      // Read GPX file as text to store in database
-      const gpxText = await readFileAsText(gpxFile)
-
       // Compress and convert photos to base64
       const photoBase64Array = []
       for (let i = 0; i < photos.length; i++) {
@@ -91,7 +88,6 @@ export default function UploadWalk() {
       await addDoc(collection(db, 'walks'), {
         ...formData,
         route,
-        gpxData: gpxText,
         photos: photoBase64Array,
         createdBy: currentUser.uid,
         createdAt: serverTimestamp(),
