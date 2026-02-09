@@ -4,7 +4,6 @@ import {
   compressImage,
   validatePhotos,
   calculateCompressedDimensions,
-  readFileAsText
 } from '../fileUtils'
 import { readFileSync } from 'fs'
 import { join } from 'path'
