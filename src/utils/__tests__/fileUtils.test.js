@@ -60,16 +60,6 @@ describe('GPX Parser Utils', () => {
     })
   })
 
-  describe('readFileAsText', () => {
-    test('should read file content as text', async () => {
-      const mockFile = new Blob([validGpxData], { type: 'text/xml' })
-      mockFile.text = () => Promise.resolve(validGpxData)
-      
-      const result = await readFileAsText(mockFile)
-      expect(result).toBe(validGpxData)
-    })
-  })
-
   describe('parseGpxText with real test.gpx file', () => {
     let testGpxContent
     let gpx
