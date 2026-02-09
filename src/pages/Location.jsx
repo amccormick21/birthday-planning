@@ -60,10 +60,6 @@ function Location() {
           ))
         )}
       </div>
-
-      <div className="edit-note">
-        <p>💡 <strong>Tip:</strong> Add or edit markdown files in <code>content/blog/</code> then run <code>npm run build:content</code></p>
-      </div>
     </div>
   )
 }
