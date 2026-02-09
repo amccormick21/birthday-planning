@@ -75,6 +75,7 @@ function parseFrontmatter(content) {
 
 /**
  * Convert markdown to HTML (simple implementation)
+ * Handles: headers, bold, italic, lists, links, paragraphs
  */
 function markdownToHtml(markdown) {
   let html = markdown
@@ -110,20 +111,33 @@ function markdownToHtml(markdown) {
   
   // Ordered lists
   html = html.replace(/^\d+\.\s+(.*)$/gm, '<li>$1</li>')
+  // Wrap consecutive <li> that aren't already in <ul> into <ol>
+  html = html.replace(/(<li>.*<\/li>\n?)(?!<\/ul>)/g, (match, p1, offset, string) => {
+    // Check if this li is already part of a ul
+    const before = string.slice(0, offset)
+    const lastUlOpen = before.lastIndexOf('<ul>')
+    const lastUlClose = before.lastIndexOf('</ul>')
+    if (lastUlOpen > lastUlClose) {
+      return match // Already in a ul
+    }
+    return match
+  })
   
-  // Paragraphs
+  // Paragraphs - wrap lines that aren't already wrapped
   const lines = html.split('\n\n')
   html = lines.map(block => {
     block = block.trim()
     if (!block) return ''
+    // Don't wrap if already an HTML block element
     if (block.match(/^<(h[1-6]|ul|ol|li|p|div|blockquote)/)) {
       return block
     }
+    // Don't wrap empty lines
     if (!block) return ''
     return `<p>${block.replace(/\n/g, '<br>')}</p>`
   }).join('\n')
   
-  // Clean up
+  // Clean up any double-wrapped paragraphs
   html = html.replace(/<p><p>/g, '<p>')
   html = html.replace(/<\/p><\/p>/g, '</p>')
   
@@ -136,8 +150,11 @@ function markdownToHtml(markdown) {
 async function buildBlogContent() {
   console.log('📝 Building blog content...\n')
   
+  // Check if content directory exists
   if (!existsSync(BLOG_CONTENT_DIR)) {
-    console.log('   No blog content directory found, skipping...\n')
+    console.log(`Creating content directory: ${BLOG_CONTENT_DIR}`)
+    await mkdir(BLOG_CONTENT_DIR, { recursive: true })
+    console.log('⚠️  No blog content found. Add markdown files to content/blog/')
     return
   }
   
@@ -145,11 +162,11 @@ async function buildBlogContent() {
   const markdownFiles = files.filter(f => f.endsWith('.md') && f.toLowerCase() !== 'readme.md')
   
   if (markdownFiles.length === 0) {
-    console.log('   No markdown files found in content/blog/\n')
+    console.log('⚠️  No markdown files found in content/blog/')
     return
   }
   
-  console.log(`   Found ${markdownFiles.length} markdown file(s):\n`)
+  console.log(`Found ${markdownFiles.length} markdown file(s):\n`)
   
   const posts = []
   
@@ -158,12 +175,13 @@ async function buildBlogContent() {
     const content = await readFile(filePath, 'utf-8')
     const { metadata, body } = parseFrontmatter(content)
     
+    // Validate required fields
     if (!metadata.id) {
-      console.warn(`   ⚠️  Skipping ${file}: missing 'id' in frontmatter`)
+      console.warn(`⚠️  Skipping ${file}: missing 'id' in frontmatter`)
       continue
     }
     if (!metadata.title) {
-      console.warn(`   ⚠️  Skipping ${file}: missing 'title' in frontmatter`)
+      console.warn(`⚠️  Skipping ${file}: missing 'title' in frontmatter`)
       continue
     }
     
@@ -178,9 +196,10 @@ async function buildBlogContent() {
     }
     
     posts.push(post)
-    console.log(`   ✓ ${file} → "${post.title}"`)
+    console.log(`  ✓ ${file} → "${post.title}"`)
   }
   
+  // Sort by order
   posts.sort((a, b) => a.order - b.order)
   
   // Ensure output directory exists
@@ -188,6 +207,7 @@ async function buildBlogContent() {
     await mkdir(DATA_OUTPUT_DIR, { recursive: true })
   }
   
+  // Write JSON file
   const output = {
     generatedAt: new Date().toISOString(),
     posts
