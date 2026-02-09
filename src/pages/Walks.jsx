@@ -140,7 +140,7 @@ function Walks() {
 
         <header className="walks-header">
           <h1>🥾 Walks & Trails</h1>
-          <p>Discover beautiful walking routes</p>
+          <p>Routes, plans, and photos can be uploaded here - and will be, as trail runs are added to the list</p>
         </header>
 
         <div className="empty-state">
