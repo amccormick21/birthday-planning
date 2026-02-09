@@ -136,20 +136,6 @@ export const compressImage = (file, maxWidth = 800, maxHeight = 600, quality = 0
 }
 
 /**
- * Read a text file and return its content
- * @param {File} file - File to read
- * @returns {Promise<string>} File content as text
- */
-export const readFileAsText = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = (e) => resolve(e.target.result)
-    reader.onerror = () => reject(new Error('Failed to read file'))
-    reader.readAsText(file)
-  })
-}
-
-/**
  * Validate photo array
  * @param {File[]} photos - Array of photo files
  * @param {number} maxPhotos - Maximum allowed photos (default: 6)
