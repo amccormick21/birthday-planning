@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/Home.css'
 
 const WELCOME_SHOWN_KEY = 'birthday-welcome-shown'
 const DEFAULT_TAB = 'Location'
+const SWIPE_THRESHOLD = 50 // minimum swipe distance in pixels
 
 const spinnerItems = [
   {
@@ -57,6 +58,38 @@ function Home() {
   const [activeIndex, setActiveIndex] = useState(defaultIndex)
   const [showWelcome, setShowWelcome] = useState(false)
   const navigate = useNavigate()
+  
+  // Touch/swipe handling
+  const touchStartX = useRef(null)
+  const touchEndX = useRef(null)
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    
+    const diff = touchStartX.current - touchEndX.current
+    
+    if (Math.abs(diff) > SWIPE_THRESHOLD) {
+      if (diff > 0) {
+        // Swiped left - go next
+        setActiveIndex((prev) => (prev + 1) % spinnerItems.length)
+      } else {
+        // Swiped right - go prev
+        setActiveIndex((prev) => (prev - 1 + spinnerItems.length) % spinnerItems.length)
+      }
+    }
+    
+    // Reset
+    touchStartX.current = null
+    touchEndX.current = null
+  }
 
   useEffect(() => {
     // Check if this is the first visit
@@ -120,7 +153,14 @@ function Home() {
         <p>We&apos;ve planned an adventure... explore the site to find out more</p>
       </header>
 
-      <div className="spinner-spinner" role="region" aria-label="Content navigation">
+      <div 
+        className="spinner-spinner" 
+        role="region" 
+        aria-label="Content navigation"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <button className="nav-button prev" onClick={handlePrev} aria-label="Previous item">
           ‹
         </button>
@@ -135,13 +175,6 @@ function Home() {
                 className={`spinner-item ${index === activeIndex ? 'active' : ''}`}
                 onClick={() => index !== activeIndex && handleSelect(index)}
                 style={{ 
-                  position: `absolute`,
-                  left: '50%',
-                  top: '50%',
-                  width: '600px',
-                  height: '400px',
-                  marginLeft: '-300px',
-                  marginTop: '-200px',
                   transform: `translateX(${GetTransform(index, activeIndex) * 100}%) scale(${index === activeIndex ? 1 : 0.8})`,
                   zIndex: zIndex
                 }}
