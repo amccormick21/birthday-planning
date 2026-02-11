@@ -295,18 +295,6 @@ function Walks() {
                 </Marker>
               </MapContainer>
             </div>
-
-            <div className="map-providers-info">
-              <h4>📚 Recommended Mapping & GPX Resources:</h4>
-              <ul>
-                <li><strong>Leaflet</strong> - Open-source mapping library (currently used)</li>
-                <li><strong>Mapbox GL JS</strong> - Advanced styling and 3D terrain</li>
-                <li><strong>GPX Editor</strong> - Create routes at <a href="https://www.gpxeditor.co.uk" target="_blank" rel="noopener noreferrer">gpxeditor.co.uk</a></li>
-                <li><strong>AllTrails</strong> - Download GPX files from popular trails</li>
-                <li><strong>Komoot</strong> - Plan routes and export as GPX</li>
-                <li><strong>Strava</strong> - Track and export your own walks</li>
-              </ul>
-            </div>
           </div>
           )}
         </main>

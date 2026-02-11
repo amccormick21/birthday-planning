@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -17,41 +16,31 @@ let DefaultIcon = L.icon({
 })
 L.Marker.prototype.options.icon = DefaultIcon
 
-// Sample images (using emojis as placeholders)
-const galleryImages = [
-  { id: 1, title: 'Exterior View', emoji: '🏡' },
-  { id: 2, title: 'Living Room', emoji: '🛋️' },
-  { id: 3, title: 'Bedroom', emoji: '🛏️' },
-  { id: 4, title: 'Kitchen', emoji: '🍳' },
-  { id: 5, title: 'Garden', emoji: '🌳' },
-  { id: 6, title: 'View', emoji: '🌅' }
-]
-
 function Accommodation() {
   const navigate = useNavigate()
-  const [selectedImage, setSelectedImage] = useState(0)
   
   // Default coordinates (London - replace with actual location)
   const position = [51.27368, -2.59226]
 
   const accommodationDetails = {
-    name: 'Accommodation Name',
-    address: 'Address to be determined',
-    description: `This beautiful accommodation offers everything you need for a comfortable stay. 
+    name: 'Somewhere in the Mendip Hills',
+    address: 'To be arranged...',
+    description: `A beautiful cottage to stay in, with walks from the door and great pubs, restaurants, and scenery only moments away.
     
     Features include:
-    • Spacious rooms with modern amenities
-    • Fully equipped kitchen
-    • Beautiful garden and outdoor space
-    • Close to local attractions and transport
-    • Peaceful and relaxing atmosphere`,
+    • Walks from the front door
+    • Your home away from home
+    • Space to get the maps out on the floor
+    • Unblemished kerb appeal
+    • Local stone circles`,
     amenities: [
-      'WiFi',
-      'Parking',
-      'Kitchen',
-      'Garden',
-      'Heating',
-      'Washer/Dryer'
+      'Roof',
+      'Bed',
+      'Possibly another bed',
+      'Almost certianly a hairdryer',
+      'Doorbell',
+      'Four walls',
+      'A floor (for maps)',
     ],
     checkIn: 'To be determined',
     checkOut: 'To be determined'
@@ -69,30 +58,6 @@ function Accommodation() {
       </header>
 
       <div className="accommodation-content">
-        {/* Image Gallery */}
-        <section className="gallery-section">
-          <h3>Photo Gallery</h3>
-          <div className="main-image">
-            <div className="image-placeholder">
-              <span className="emoji-large">{galleryImages[selectedImage].emoji}</span>
-              <p>{galleryImages[selectedImage].title}</p>
-            </div>
-          </div>
-          <div className="thumbnail-grid">
-            {galleryImages.map((img, index) => (
-              <div
-                key={img.id}
-                className={`thumbnail ${index === selectedImage ? 'active' : ''}`}
-                onClick={() => setSelectedImage(index)}
-              >
-                <span className="emoji-small">{img.emoji}</span>
-              </div>
-            ))}
-          </div>
-          <p className="edit-note">
-            💡 Replace emoji placeholders with actual images in <code>src/pages/Accommodation.jsx</code>
-          </p>
-        </section>
 
         {/* Details */}
         <section className="details-section">
@@ -143,9 +108,6 @@ function Accommodation() {
               </Marker>
             </MapContainer>
           </div>
-          <p className="edit-note">
-            💡 Update the coordinates in <code>src/pages/Accommodation.jsx</code> to show the actual location
-          </p>
         </section>
       </div>
     </div>
