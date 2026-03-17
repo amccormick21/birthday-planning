@@ -19,13 +19,13 @@ L.Marker.prototype.options.icon = DefaultIcon
 function Accommodation() {
   const navigate = useNavigate()
   
-  // Default coordinates (London - replace with actual location)
-  const position = [51.27368, -2.59226]
+  // Cart House Holiday Home: Axbridge
+  const position = [51.2877712, -2.82308]
 
   const accommodationDetails = {
-    name: 'Somewhere in the Mendip Hills',
-    address: 'To be arranged...',
-    description: `A beautiful cottage to stay in, with walks from the door and great pubs, restaurants, and scenery only moments away.
+    name: 'Cart House - Axbridge',
+    address: 'Cart House Holiday Cottage, 50 West Street, Axbridge, BS26 2AD',
+    description: `A stunning self-catered holiday cottage in the heart of the Mendip Hills. A wide, open plan kitchen and dining area and a cozy mezzanine seating and reading area. Two bedrooms provide plenty of space for visitors.
     
     Features include:
     • Walks from the front door
@@ -42,8 +42,8 @@ function Accommodation() {
       'Four walls',
       'A floor (for maps)',
     ],
-    checkIn: 'To be determined',
-    checkOut: 'To be determined'
+    checkIn: '14:00, 19th June 2026',
+    checkOut: '10:00, 23rd June 2026'
   }
 
   return (
